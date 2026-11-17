@@ -1,0 +1,22 @@
+[package]
+name = "app"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+actix-web = { workspace = true }
+actix-cors = { workspace = true }
+sqlx = { workspace = true }
+chrono = { workspace = true }
+log = { workspace = true }
+
+auth = { path = "../modules/auth" }
+base = { path = "../base" }
+
+[dev-dependencies]
+async-trait = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+
+[lib]
+path = "src/lib.rs"

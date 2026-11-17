@@ -1,0 +1,63 @@
+[package]
+name = "matarchiya"
+version = "0.1.0"
+edition = "2024"
+
+[workspace]
+resolver = "3"
+# Every crate under `src/modules/` is a workspace member automatically, so a
+# new business module is just a new folder there (see README.md).
+members = ["src/app", "src/base", "src/modules/*"]
+
+[workspace.dependencies]
+# Web
+actix-web = "4.11.0"
+actix-cors = "0.7.1"
+
+# Database
+sqlx = { version = "0.8", default-features = false, features = [
+  "runtime-tokio",
+  "tls-rustls",
+  "postgres",
+  "chrono",
+  "uuid",
+  "macros",
+  "migrate",
+] }
+
+# Data
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.8", features = ["v4", "serde"] }
+chrono = { version = "0.4.41", features = ["serde"] }
+
+# Async
+tokio = { version = "1.40", features = ["full"] }
+async-trait = "0.1.88"
+futures-util = "0.3.26"
+
+# Security
+argon2 = "0.5"
+jsonwebtoken = "9.3.1"
+sha2 = "0.10"
+rand = "0.8"
+hex = "0.4"
+
+# Runtime / config / logging
+dotenvy = "0.15"
+env_logger = "0.11.0"
+log = "0.4"
+
+[dependencies]
+base = { path = "src/base" }
+app = { path = "src/app" }
+actix-web = { workspace = true }
+dotenvy = { workspace = true }
+log = { workspace = true }
+
+[profile.dev]
+incremental = true
+
+[profile.release]
+lto = "thin"
+codegen-units = 16

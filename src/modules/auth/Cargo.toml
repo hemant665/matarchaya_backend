@@ -1,0 +1,25 @@
+[package]
+name = "auth"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+actix-web = { workspace = true }
+sqlx = { workspace = true }
+serde = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+async-trait = { workspace = true }
+tokio = { workspace = true }
+log = { workspace = true }
+
+argon2 = { workspace = true }
+jsonwebtoken = { workspace = true }
+sha2 = { workspace = true }
+rand = { workspace = true }
+hex = { workspace = true }
+
+base = { path = "../../base" }
+
+[lib]
+path = "src/lib.rs"
